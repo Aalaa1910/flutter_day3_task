@@ -12,10 +12,16 @@ class _LoginScreenState extends State<LoginScreen> {
 
   final storage = FlutterSecureStorage();
 
+  TextEditingController nameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   void login() async {
+
+    await storage.write(
+      key: "name",
+      value: nameController.text,
+    );
 
     await storage.write(
       key: "email",
@@ -47,6 +53,16 @@ class _LoginScreenState extends State<LoginScreen> {
             Icon(Icons.lock, size: 80),
 
             SizedBox(height: 30),
+
+            TextField(
+              controller: nameController,
+              decoration: InputDecoration(
+                labelText: "Name",
+                border: OutlineInputBorder(),
+              ),
+            ),
+
+            SizedBox(height: 20),
 
             TextField(
               controller: emailController,

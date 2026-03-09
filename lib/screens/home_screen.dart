@@ -12,7 +12,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final storage = FlutterSecureStorage();
 
-  String email = "";
+  String name = "";
 
   @override
   void initState() {
@@ -22,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   void getUser() async {
 
-    String? savedEmail = await storage.read(key: "email");
+    String? savedName = await storage.read(key: "name");
 
     setState(() {
-      email = savedEmail ?? "";
+      name = savedName ?? "";
     });
 
   }
@@ -57,15 +57,8 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
 
             Text(
-              "Welcome",
+              "Welcome, $name!",
               style: TextStyle(fontSize: 28),
-            ),
-
-            SizedBox(height: 10),
-
-            Text(
-              email,
-              style: TextStyle(fontSize: 20),
             ),
 
             SizedBox(height: 30),
